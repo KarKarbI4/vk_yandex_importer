@@ -87,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# response results
+response.txt
+tracklist_*.txt
