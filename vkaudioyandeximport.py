@@ -15,7 +15,9 @@ def send_keys_to_input_by_xpath(webdriver, xpath, keys):
     inp.send_keys(keys)
     return 0
 
-reqParams = {'client_id': '2989747', 'display': 'page', 'response_type': 'token', 'redirect_uri': 'https://oauth.vk.com/blank.html', 'scope':'audio', 'v':'5.37'}
+api_v = '5.53'
+
+reqParams = {'client_id': '2989747', 'display': 'page', 'response_type': 'token', 'redirect_uri': 'https://oauth.vk.com/blank.html', 'scope':'audio', 'v':api_v}
 # r = requests.get('https://oauth.vk.com/authorize', params=pm)
 # print(r.text)
 
@@ -46,7 +48,14 @@ access_token = resParams.get('access_token')
 print(access_token)
 
 req_user_id = '120276236'
-vk_api_audio_params = {'owner_id': req_user_id, 'access_token': access_token}
+
+vk_api_audio_params = {
+    'owner_id': req_user_id,
+    'access_token': access_token,
+    'count': '6000',
+    'v': api_v
+}
+
 vk_api_audio_url = 'https://api.vk.com/method/audio.get'
 # print(reqAudioUrl)
 reqAudio = requests.get(vk_api_audio_url, params=vk_api_audio_params)
@@ -58,8 +67,8 @@ reqAudioJson = reqAudio.json()
 # print(reqAudioJson)
 trackList = []
 resp = reqAudioJson.get('response')
-trackAmount = resp[0]
-tracks = resp[1:]
+trackAmount = resp['count']
+tracks = resp['items']
 for track in tracks:
     trackList.append(track['artist'] + ' - ' + track['title'])
 
