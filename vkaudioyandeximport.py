@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import time
 import urllib.parse
-import selenium
-from selenium import webdriver
 import webbrowser
-
+import sys
 import requests
 
+import selenium
+from selenium import webdriver
 def send_keys_to_input_by_xpath(webdriver, xpath, keys):
     inps = webdriver.find_elements_by_xpath(xpath)
     if not inps:
@@ -29,8 +29,8 @@ while not url in browser.current_url:
     time.sleep(1)
 print('HERE')
 
-login = 'KarKarbI41000000@rambler.ru'
-password = 'MephiMoscow533'
+login = sys.argv[1]
+password = sys.argv[2]
 login_xpath = '/html/body/div/form/table/tbody/tr[2]/td/div[2]/div/div/input[6]'
 if send_keys_to_input_by_xpath(browser, login_xpath, login):
     print('SHIT')
