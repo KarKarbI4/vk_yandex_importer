@@ -47,8 +47,7 @@ user_id = resParams.get('user_id')
 access_token = resParams.get('access_token')
 print(access_token)
 
-req_user_id = '120276236'
-
+req_user_id = sys.argv[3]
 vk_api_audio_params = {
     'owner_id': req_user_id,
     'access_token': access_token,
