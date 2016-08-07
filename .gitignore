@@ -90,4 +90,5 @@ ENV/
 
 # response results
 response.txt
+output.txt
 tracklist_*.txt
